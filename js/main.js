@@ -4,15 +4,17 @@ function getRandomIntInclusive(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
   }
-  return Error;
+  let er = ('Введите положительные числа, включая 0');
+  return er;
 }
 
-function getRandomArbitrary(min, max) {
+const getSumm = (min, max, numbersCountAfterDot) => {
   if (min >= 0 && max >= 0){
-    return Math.random() * (max - min) + min;
+    const random = Math.random()* (max - min) + min;
+    return random.toFixed(numbersCountAfterDot);
   }
   let er = ('Введите положительные числа, включая 0');
   return er;
 }
-getRandomIntInclusive(4, 10);
-getRandomArbitrary(12, 400);
+getRandomIntInclusive(-4, 10);
+getSumm(2, 10, 4);
