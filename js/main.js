@@ -50,11 +50,13 @@ const createArr = ([...source], maxLength) => Array.from(
   { length: Math.min(source.length, 1 + Math.random() * maxLength | 0) },
   () => source.splice(Math.random() * source.length | 0, 1)[0]);
 
-/*function mainZero(n, width, z) {
-  z = z || '0';
-  n = n + '';
-  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
-}*/
+function mainZero(min, max, width) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  const randomize = Math.floor(Math.random() * (max - min + 1)) + min;
+  const n = randomize + '';
+  return n.length >= width ? n : new Array(width - n.length + 1).join(0) + n;
+}
 
 function getRandomInt(min, max) {
   if (min >= 0 && max >= 0){
@@ -76,9 +78,7 @@ const getRandomFloat = (min, max, numbersCountAfterDot) => {
 }
 
 const describeAuthor = () => {
-  return{
-    //[AVATAR]: x = mainZero(2, 2),
-  };
+  mainZero(0, 8, 2);
 }
 
 const offerInformation = () => {
