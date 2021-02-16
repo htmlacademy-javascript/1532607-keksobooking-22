@@ -1,8 +1,6 @@
-/*const AVATAR = [
-  'img/avatars/user',
-  //x,
-  '.png',
-];*/
+const AVATAR = [
+  'img/avatars/user{{xx}}.png',
+];
 const TITLE = [
   'Spend free time',
   'Go off monotony',
@@ -50,12 +48,12 @@ const createArr = ([...source], maxLength) => Array.from(
   { length: Math.min(source.length, 1 + Math.random() * maxLength | 0) },
   () => source.splice(Math.random() * source.length | 0, 1)[0]);
 
-function mainZero(min, max, width) {
+function getMainZero(min, max, width) {
   min = Math.ceil(min);
   max = Math.floor(max);
   const randomize = Math.floor(Math.random() * (max - min + 1)) + min;
-  const n = randomize + '';
-  return n.length >= width ? n : new Array(width - n.length + 1).join(0) + n;
+  const randomNumber = randomize + '';
+  return randomNumber.length >= width ? randomNumber : new Array(width - randomNumber.length + 1).join(0) + randomNumber;
 }
 
 function getRandomInt(min, max) {
@@ -78,13 +76,13 @@ const getRandomFloat = (min, max, numbersCountAfterDot) => {
 }
 
 const describeAuthor = () => {
-  mainZero(0, 8, 2);
+  return AVATAR.replace(/\{(\x\x)\}/g, getMainZero(0, 8, 2))
 }
 
 const offerInformation = () => {
   return{
     title: createArr(TITLE, TITLE.length - 1),
-    address: '',
+    address: getLocation(),
     price: getRandomInt(1000, 75000),
     type: getRandomInt(0, TYPE.length - 1),
     rooms: getRandomInt(1, 5),
@@ -103,8 +101,14 @@ const getLocation = () => {
     y: getRandomFloat(139.7, 139.8, 5),
   };
 };
-const similarAds =
-new Array(DESCRIPTION_SIMILAR_AD_COUNT).fill(null).map(() =>
-  describeAuthor(), getLocation(), offerInformation());
+const createAD = () => {
+  return{
+    author: describeAuthor(),
+    offer: offerInformation(),
+    location: getLocation(),
+  }
+}
+const similarAds = new Array(DESCRIPTION_SIMILAR_AD_COUNT).fill(null).map(() =>
+  createAD());
 
 similarAds;
