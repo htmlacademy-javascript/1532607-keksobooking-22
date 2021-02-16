@@ -1,6 +1,4 @@
-const AVATAR = [
-  'img/avatars/user{{xx}}.png',
-];
+const AVATAR = 'img/avatars/user{{xx}}.png';
 const TITLE = [
   'Spend free time',
   'Go off monotony',
