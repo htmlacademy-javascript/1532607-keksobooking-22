@@ -73,8 +73,20 @@ const getRandomFloat = (min, max, numbersCountAfterDot) => {
   return er;
 }
 
+const rechangeNumber = () => {
+  return AVATAR.replace(/\{(\x\x)\}/g, getMainZero(1, 8, 2));
+}
+
+/*const describeAuthor =
+{   toString: function() {
+  return rechangeNumber(AVATAR)
+},
+};*/
+
 const describeAuthor = () => {
-  return AVATAR.replace(/\{(\x\x)\}/g, getMainZero(0, 8, 2))
+  return{
+    avatar: rechangeNumber(),
+  }
 }
 
 const offerInformation = () => {
@@ -82,13 +94,13 @@ const offerInformation = () => {
     title: createArr(TITLE, TITLE.length - 1),
     address: getLocation(),
     price: getRandomInt(1000, 75000),
-    type: getRandomInt(0, TYPE.length - 1),
+    type: createArr(TYPE, TYPE.length - 3),
     rooms: getRandomInt(1, 5),
     guests: getRandomInt(1, 20),
-    checkin: getRandomInt(0, CHECKIN.length - 1),
-    checkout: getRandomInt(0, CHECKOUT.length - 1),
+    checkin: createArr(CHECKIN, CHECKIN.length - 2),
+    checkout: createArr(CHECKOUT, CHECKOUT.length - 2),
     features: createArr(FEATURES, FEATURES.length - 1),
-    description: getRandomInt(0, DESCRIPTION.length - 1),
+    description: createArr(DESCRIPTION, DESCRIPTION.length - 1),
     photos: createArr(PHOTOS, PHOTOS.length - 1),
   }
 }
