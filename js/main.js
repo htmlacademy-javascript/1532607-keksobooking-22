@@ -77,12 +77,6 @@ const rechangeNumber = () => {
   return AVATAR.replace(/\{(\x\x)\}/g, getMainZero(1, 8, 2));
 }
 
-/*const describeAuthor =
-{   toString: function() {
-  return rechangeNumber(AVATAR)
-},
-};*/
-
 const describeAuthor = () => {
   return{
     avatar: rechangeNumber(),
