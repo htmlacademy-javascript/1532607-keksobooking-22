@@ -89,4 +89,4 @@ const createAD = () => {
 const similarAds = new Array(DESCRIPTION_SIMILAR_AD_COUNT).fill(null).map(() =>
   createAD());
 
-export{similarAds}
+export{similarAds};
