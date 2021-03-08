@@ -1,3 +1,4 @@
-import {similarAds} from './create-ads.js';
+import './create-ads.js';
+import './util.js'
+import './popup.js'
 
-similarAds();
