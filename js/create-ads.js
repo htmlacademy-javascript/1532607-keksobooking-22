@@ -1,4 +1,4 @@
-import {createArr, getRandomInt, getRandomFloat, getMainZero} from './util.js';
+import {createArr, getRandomInt, getRandomFloat, getMainZero, getStringFromArray} from './util.js';
 
 const TITLE = [
   'Spend free time',
@@ -41,12 +41,10 @@ const PHOTOS = [
   'http://o0.github.io/assets/images/tokyo/hotel3.jpg',
 ];
 
-const AVATAR = 'img/avatars/user{{xx}}.png';
-
 const DESCRIPTION_SIMILAR_AD_COUNT = 10;
 
 const rechangeNumber = () => {
-  return AVATAR.replace(/\{(\x\x)\}/g, getMainZero(1, 8, 2));
+  return `img/avatars/user${getMainZero(1, 8, 2)}.png`;
 }
 
 const describeAuthor = () => {
@@ -57,16 +55,16 @@ const describeAuthor = () => {
 
 const offerInformation = () => {
   return{
-    title: createArr(TITLE, TITLE.length - 1),
+    title: getStringFromArray(TITLE),
     address: getLocation(),
     price: getRandomInt(1000, 75000),
-    type: createArr(TYPE, TYPE.length - 3),
+    type: getStringFromArray(TYPE),
     rooms: getRandomInt(1, 5),
     guests: getRandomInt(1, 20),
-    checkin: createArr(CHECKIN, CHECKIN.length - 2),
-    checkout: createArr(CHECKOUT, CHECKOUT.length - 2),
+    checkin: getStringFromArray(CHECKIN),
+    checkout: getStringFromArray(CHECKOUT),
     features: createArr(FEATURES, FEATURES.length - 1),
-    description: createArr(DESCRIPTION, DESCRIPTION.length - 1),
+    description: getStringFromArray(DESCRIPTION),
     photos: createArr(PHOTOS, PHOTOS.length - 1),
   }
 }
@@ -86,7 +84,7 @@ const createAD = () => {
   }
 }
 
-const similarAds = new Array(DESCRIPTION_SIMILAR_AD_COUNT).fill(null).map(() =>
+const createAds = new Array(DESCRIPTION_SIMILAR_AD_COUNT).fill(null).map(() =>
   createAD());
 
-export{similarAds};
+export{createAds};
